@@ -8,6 +8,7 @@ import { bootstrapDB } from './DB/connection.db.js';
 import { userModel } from './DB/model/user.model.js';
 import { decryption, encryption } from './common/security/encryption.security.js';
 import { set } from './common/services/index.js';
+import { sendEmail } from './common/utils/index.js';
 
 const app = (express())
 
@@ -17,6 +18,7 @@ await set({key: "age" , value: 0 , ttl: 60})
 
 
 app.use(cors())
+app.use("/assets" , express.static("./assets"))
 
 app.use(express.json())
 app.use("/auth" , authenticationController)
@@ -27,3 +29,4 @@ app.get("/", (req, res, next) => {
     res.send("Home Page")
 })
 app.use(globalErrorHandling)
+

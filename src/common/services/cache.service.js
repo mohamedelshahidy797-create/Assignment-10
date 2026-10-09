@@ -62,3 +62,9 @@ export const expire = async ({key , ttl })=>{
    return await client.expire(key , ttl)
 }
 
+
+export const incBy = async ({key , value=1 })=>{
+
+   return await client.incrBy(key , value)
+}
+

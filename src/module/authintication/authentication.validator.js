@@ -1,5 +1,6 @@
-import {z} from 'zod'
+import {email, z} from 'zod'
 import { GendereNUM } from './../../common/enum/user.enum.js';
+import { generalValidationFields } from '../../common/validation.js';
 
 
 
@@ -15,6 +16,27 @@ export const  login = z.object({
         lang:z.enum(["ar" , "en"]).default("ar")
     })
 })
+
+
+export const  confirmEmail = z.object({
+    body:z.strictObject({
+        email: generalValidationFields.email(),
+        otp: generalValidationFields.otp()
+    })
+})
+
+
+
+export const  resendConfirmEmail = z.object({
+    body:z.strictObject({
+        email: generalValidationFields.email(),
+    })
+})
+
+
+
+
+
 export const signup = z.object({
     body: loginSchema.safeExtend({
         username: z.string().min(2 , {message:"minimum username is 2"}),

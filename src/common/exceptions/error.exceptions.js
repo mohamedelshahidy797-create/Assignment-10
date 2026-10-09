@@ -32,6 +32,18 @@ return ApplicationException({
     }
 })
 }
+
+
+
+export const tooManyRequestException =(message = "tooManyRequestException" , extra = {})=>{
+return ApplicationException({
+    message,
+    optipns : {
+        cause: {status:429 , ...extra}
+    }
+})
+}
+
 export const unauthorizedExcution =(message = "unauthorized" , extra = {})=>{
 return ApplicationException({
     message,

@@ -41,5 +41,5 @@ const data = await createLoginCredentials({payload:{sub :payload.sub}})
 
 
 export const logout = async (payload , user   )=>{
-  return await createRevokeToken({payload})
+  return await createRevokeToken({payload , user})
 } 
